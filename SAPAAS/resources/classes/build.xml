@@ -1,47 +1,193 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project default="createJar" name="PSRuntime" basedir="../">
-	<property name="sourcedir" value="${basedir}/src" />
-	<property name="targetdir" value="${basedir}/bin" />
-	
-	<!--第三方jar包的路径-->
-	<path id="lib-classpath">  
-		<fileset dir="I:/J2EE/commonlib">  
-	            <include name="**/*.jar"/>  
-	  	</fileset>       
-	</path>  
-	
-	<target name="createJar" depends="compile">
-		<jar destfile="${basedir}/saibz5baselib.jar" 
-             basedir="${basedir}/bin"  >
-			 <manifest>  
-			                <attribute name="Main-class" value=""/>  
-			                <attribute name="Class-Path" value=""/>  
-			 </manifest>  	
-			<metainf dir="${basedir}/res/META-INF">  
-				<include name="**" />  
-			</metainf>  
-		</jar>
-	</target>
-        <target name="compile" depends="clean">
-		<javac srcdir="${sourcedir}" 
-               destdir="${targetdir}" 
-               encoding="UTF-8" 
-               target="1.7"
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="SAPAAS" default="war" basedir="../..">
+    <description>Reproducible local SAPAAS source build.</description>
+
+    <property name="src.dir" location="${basedir}/src"/>
+    <property name="build-tools.src.dir" location="${basedir}/build-tools"/>
+    <property name="build-tools.lib.dir" location="${build-tools.src.dir}/lib"/>
+    <property name="servlet-api.jar"
+              location="${build-tools.lib.dir}/javax.servlet-api-4.0.1.jar"/>
+    <property name="jsp-api.jar"
+              location="${build-tools.lib.dir}/jsp-api-task7.jar"/>
+    <property name="spring-security-oauth2.jar"
+              location="${build-tools.lib.dir}/spring-security-oauth2-2.3.8.RELEASE.jar"/>
+    <property name="spring-security-core.jar"
+              location="${build-tools.lib.dir}/spring-security-core-5.4.1.jar"/>
+    <property name="spring-security-crypto.jar"
+              location="${build-tools.lib.dir}/spring-security-crypto-5.4.1.jar"/>
+    <property name="spring-security-rsa.jar"
+              location="${build-tools.lib.dir}/spring-security-rsa-1.0.9.RELEASE.jar"/>
+    <property name="webapp.dir" location="${basedir}/webapp"/>
+    <property name="lib.dir" location="${basedir}/lib"/>
+    <property name="resources.dir" location="${basedir}/resources"/>
+    <property name="resources.classes.dir" location="${resources.dir}/classes"/>
+    <property name="resources.configex.dir" location="${resources.dir}/configex"/>
+    <property name="resources.meta-inf.dir" location="${resources.dir}/META-INF"/>
+    <property name="resources.web.xml" location="${resources.dir}/web.xml"/>
+
+    <property name="build.dir" location="${basedir}/target"/>
+    <property name="build-tools.classes.dir" location="${build.dir}/build-tools"/>
+    <property name="classes.dir" location="${build.dir}/classes"/>
+    <property name="staging.dir" location="${build.dir}/webapp"/>
+    <property name="war.file" location="${build.dir}/SAPAAS.war"/>
+    <property name="expected-dependency-count" value="200"/>
+    <property name="javac.max.errors" value="1000"/>
+
+    <path id="dependency.classpath">
+        <fileset dir="${lib.dir}" includes="*.jar"/>
+    </path>
+
+    <path id="compile.classpath">
+        <path refid="dependency.classpath"/>
+        <pathelement location="${resources.classes.dir}"/>
+        <fileset dir="${build-tools.lib.dir}" includes="*.jar"/>
+    </path>
+
+    <path id="source.path">
+        <pathelement location="${src.dir}"/>
+        <pathelement location="${src.dir}/saibz5baselib"/>
+        <pathelement location="${src.dir}/saibz5wflib"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="verify-build-tools">
+        <available file="${build-tools.src.dir}/BuildPreflight.java"
+                   property="build-preflight.source.available"/>
+        <fail unless="build-preflight.source.available"
+              message="Missing build preflight source: ${build-tools.src.dir}/BuildPreflight.java"/>
+        <mkdir dir="${build-tools.classes.dir}"/>
+        <javac srcdir="${build-tools.src.dir}"
+               destdir="${build-tools.classes.dir}"
+               includes="BuildPreflight.java"
+               encoding="UTF-8"
                source="1.7"
-               nowarn="on"
-               deprecation="true"
-			   includeantruntime="on" >
-			<classpath refid="lib-classpath"/> 
-			<!-- <compilerarg line="-Xlint:unchecked" />-->
-		</javac>
-	</target>
-	
-	
-	<target name="clean" >
-		<delete file="${basedir}/target/" />
-	</target>
-	
-	<target name="tstamp">    
-		<tstamp/>
-	</target>
+               target="1.7"
+               includeantruntime="false"
+               failonerror="true"/>
+    </target>
+
+    <target name="verify-dependencies" depends="verify-build-tools">
+        <available file="${lib.dir}" type="dir" property="lib.dir.available"/>
+        <fail unless="lib.dir.available"
+              message="Missing local dependency directory: ${lib.dir}"/>
+
+        <java classname="BuildPreflight"
+              fork="true"
+              failonerror="true">
+            <classpath>
+                <pathelement location="${build-tools.classes.dir}"/>
+            </classpath>
+            <arg value="--dependencies"/>
+            <arg value="${lib.dir}"/>
+            <arg value="${lib.dir}/SHA256SUMS"/>
+            <arg value="${expected-dependency-count}"/>
+        </java>
+    </target>
+
+    <target name="verify-source" depends="verify-build-tools">
+        <java classname="BuildPreflight"
+              fork="true"
+              failonerror="true">
+            <classpath>
+                <pathelement location="${build-tools.classes.dir}"/>
+            </classpath>
+            <arg value="--source"/>
+            <arg value="${src.dir}"/>
+        </java>
+    </target>
+
+    <target name="compile" depends="clean,verify-dependencies,verify-source">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               encoding="UTF-8"
+               source="1.7"
+               target="1.7"
+               includeantruntime="false"
+            fork="true"
+               memoryInitialSize="256m"
+               memoryMaximumSize="8192m"
+               sourcepathref="source.path"
+               failonerror="true">
+            <compilerarg value="-Xmaxerrs"/>
+            <compilerarg value="${javac.max.errors}"/>
+            <!--
+                The recovered tree contains duplicate FQCNs because the
+                original webapp shipped overlapping self-developed JARs.
+                Keep the source from the primary runtime module and exclude
+                only the shadow copies from this merged source compilation.
+            -->
+            <exclude name="saibz5modelprolib/net/ibizsys/model/data/IPSDataItem.java"/>
+            <exclude name="saibz5modelprolib/net/ibizsys/model/data/IPSDataItemParam.java"/>
+            <exclude name="saibz5modelprolib/net/ibizsys/model/dataentity/action/IPSDELogicAction.java"/>
+            <exclude name="saibz5modelprolib/net/ibizsys/model/dataentity/action/IPSDEUserCreateAction.java"/>
+            <exclude name="saibz5modelprolib/net/ibizsys/model/dataentity/action/IPSDEUserSysUpdateAction.java"/>
+            <exclude name="saibz5modelprolib/net/ibizsys/model/dataentity/action/IPSDEUserUpdateAction.java"/>
+            <exclude name="sasrfdaws/SA/SRFDA/Ctrl/BaseDAGlobalModel.java"/>
+            <exclude name="sasrfdaws/SA/SRFDA/Ctrl/IDAGlobalModel.java"/>
+            <exclude name="sasrfdamysql/SA/SRFramework/Data/MySQL/MySQLRawProcCaller2.java"/>
+            <!-- Superseded by Servlet 3 async IM endpoints on Tomcat 9. -->
+            <exclude name="saim/SA/IM/Ctrl/IMTomcat6CometEvent.java"/>
+            <exclude name="saim7/SA/IM/Ctrl/IMTomcat7CometEvent.java"/>
+            <exclude name="saim7/SA/IM/Web/IMMeetingCometServlet7.java"/>
+            <exclude name="saim7/SA/IM/Web/IMStateCometServlet7.java"/>
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="prepare-webapp" depends="compile">
+        <delete dir="${staging.dir}"/>
+        <mkdir dir="${staging.dir}"/>
+        <copy todir="${staging.dir}">
+            <fileset dir="${webapp.dir}"/>
+        </copy>
+
+        <mkdir dir="${staging.dir}/WEB-INF/classes"/>
+        <copy todir="${staging.dir}/WEB-INF/classes">
+            <fileset dir="${resources.classes.dir}"
+                     excludes="build.xml,.gitignore"/>
+        </copy>
+        <copy todir="${staging.dir}/WEB-INF/classes">
+            <fileset dir="${classes.dir}"/>
+        </copy>
+
+        <copy todir="${staging.dir}/configex">
+            <fileset dir="${resources.configex.dir}"/>
+        </copy>
+        <copy todir="${staging.dir}/META-INF">
+            <fileset dir="${resources.meta-inf.dir}"/>
+        </copy>
+        <mkdir dir="${staging.dir}/WEB-INF/lib"/>
+        <copy todir="${staging.dir}/WEB-INF/lib">
+            <fileset dir="${lib.dir}" includes="*.jar"/>
+        </copy>
+        <copy todir="${staging.dir}/WEB-INF/lib">
+            <fileset dir="${build-tools.lib.dir}"
+                     includes="spring-security-oauth2-2.3.8.RELEASE.jar,
+                               spring-security-core-5.4.1.jar,
+                               spring-security-crypto-5.4.1.jar,
+                               spring-security-rsa-1.0.9.RELEASE.jar,
+                               activemq-all-5.10.0.jar,
+                               poi-3.10-FINAL.jar,
+                               poi-ooxml-3.10-FINAL.jar,
+                               poi-ooxml-schemas-3.10-FINAL.jar,
+                               xmlbeans-2.6.0.jar,
+                               itext-2.1.7.jar,
+                               jxl-2.6.12.jar,
+                               commons-fileupload-1.5.jar,
+                               javax.mail-1.5.6.jar"/>
+        </copy>
+    </target>
+
+    <target name="war" depends="prepare-webapp"
+            description="Compile sources and assemble SAPAAS.war">
+        <mkdir dir="${build.dir}"/>
+        <war destfile="${war.file}" webxml="${resources.web.xml}">
+            <fileset dir="${staging.dir}"/>
+        </war>
+        <echo message="Created ${war.file}"/>
+    </target>
 </project>

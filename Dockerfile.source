@@ -1,0 +1,50 @@
+# Manifest digests are pinned; callers can still override either build arg for
+# an explicitly selected local mirror or platform-specific base.
+ARG BUILD_IMAGE=maven:3.9-eclipse-temurin-8@sha256:db6bb29eb4d2507d01acc525bddf1b3a8216e3c29ca983be2e715028070281a4
+ARG RUNTIME_IMAGE=tomcat:9.0-jre8-temurin@sha256:b6bb8bd96a585f30ddfedca871c34ed37a5a2779959e9f65af1e3e7bda2329c6
+
+FROM ${BUILD_IMAGE} AS source-toolchain
+
+USER root
+ARG JAVAC_MAX_ERRORS=1000
+ARG ANT_VERSION=1.10.18
+ARG ANT_SHA256=b45db2fdd76d639301550930d33dd7bc672c9d4fdea0fe8cfd2e6a3518388d59
+ADD --checksum=sha256:${ANT_SHA256} \
+    https://downloads.apache.org/ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz \
+    /tmp/
+RUN tar -xzf /tmp/apache-ant-${ANT_VERSION}-bin.tar.gz -C /opt \
+    && ln -s /opt/apache-ant-${ANT_VERSION} /opt/ant \
+    && rm /tmp/apache-ant-${ANT_VERSION}-bin.tar.gz
+ENV ANT_HOME=/opt/ant
+ENV PATH="${ANT_HOME}/bin:${PATH}"
+
+FROM source-toolchain AS source-build
+
+WORKDIR /workspace/task7
+COPY . .
+
+RUN ant -Djavac.max.errors=${JAVAC_MAX_ERRORS} \
+    -f SAPAAS/resources/classes/build.xml war
+
+FROM ${RUNTIME_IMAGE} AS runtime
+
+ENV CATALINA_OPTS="-Dfile.encoding=UTF-8"
+ENV IBIZ_IM_FTP_CREDENTIALS_FILE=/var/lib/ibiz/ftp/credentials.properties
+
+RUN rm -rf /usr/local/tomcat/webapps/*
+RUN install -d -m 0700 /var/lib/ibiz/ftp \
+    && install -m 0600 /dev/null /var/lib/ibiz/ftp/credentials.properties
+COPY --from=source-build /workspace/task7/SAPAAS/target/SAPAAS.war \
+    /usr/local/tomcat/webapps/SAPAAS.war
+
+# Keep the task generation inputs beside the runtime for source-built images.
+RUN mkdir -p /app/application/taskfile /app/TEMPL
+COPY TEMPL_APP /app/TEMPL_APP
+COPY TEMPL_TASK /app/TEMPL_TASK
+COPY githelp.py.ftl /app/githelp.py.ftl
+RUN cp -a /app/TEMPL_APP/. /app/TEMPL/ \
+    && mkdir -p /app/application/taskfile/TEMPL \
+    && cp -a /app/TEMPL_TASK/. /app/application/taskfile/TEMPL/
+
+EXPOSE 8080
+ENTRYPOINT ["catalina.sh", "run"]
