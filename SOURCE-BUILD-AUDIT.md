@@ -146,6 +146,29 @@ local stack, so the audited deployment fails in the same way. The
 end-to-end item is therefore closed as **environment-limited**, with path-by-path
 A/B equivalence as the evidence rather than a successful login.
 
+The whole flow is now reproducible as a single gate:
+`SAPAAS/scripts/selftest-source-build.sh` clones HEAD into a temp directory,
+builds the WAR from that clone, asserts the WAR really is a source build
+(compiled classes present, no `.java` smuggled in, third-party jars bundled,
+context-root welcome page present), builds the runtime image through
+`Dockerfile.source`, starts it with the reference deployment's environment on an
+ephemeral port, and compares the entry/auth surface path by path with the
+reference container. It writes `.artifacts/source-selftest/receipt.json` and
+exits non-zero on any failing check. Latest run at `33d95a47`: **PASS** with 0
+compiler errors, 40,461 classes, 0 sources in the WAR, 213 bundled jars and 8/8
+probes equal (WAR
+`sha256:196eda32eb2978e23e7ad659801ccc00e7e42cee4c2e6af7ba9bc72653b58b5d`, image
+`aibiz/task7:selftest`
+`sha256:8ecd4ede17a87a866c269fe29e2ef6bcf3d66cb8380ab79795d004931c56961e`).
+Running the gate found two bugs **in the gate itself**, both worth remembering:
+a file that is not committed yet shows up immediately as "exists only outside
+git" (which is the point), and `grep -q` inside a pipeline is unsafe under
+`set -o pipefail` - grep exits on the first match, the upstream `unzip` dies of
+SIGPIPE, and the pipeline reports failure even though the pattern matched, so
+the script counts matches instead.
+
+A full interactive login cannot be completed in this environment, and that is
+
 The remaining web-resource gap is now classified rather than unknown. Every one
 of those files predates 2026 (mostly 2015-2021, the vendor WAR's own timestamps)
 and none appeared during the audited deployment's four days of running, so they
